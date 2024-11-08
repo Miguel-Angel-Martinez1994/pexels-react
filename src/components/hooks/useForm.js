@@ -3,7 +3,6 @@ import { useState } from "react"
 
 export const useForm = () => {
 
-  
     const [formulario,setFormulario]=useState("")
 
     const serializeForm=(formulario)=>{

@@ -6,17 +6,18 @@ export const Galeria = () => {
 
   const [categorias,setCategorias]=useState([])
 
-  //const categorias=["ciudades","animales","oceano"]
 
   const onNewCategory=(newCategory)=>{
 
     const existe=categorias.find((cat)=> cat==newCategory)
-      if(existe) return
+      if(!existe) return
     setCategorias([
       newCategory,
       ...categorias
     ])
   }
+
+  console.log({categorias})
 
   return (
     <>
@@ -24,8 +25,12 @@ export const Galeria = () => {
         <h3>Galeria de Fotos</h3>
 
         <section>{
-          categorias.map((categoria)=>
-          <Gridgallery key={categoria} categoria={categoria}/>
+
+          categorias.map((categoria)=>{
+            
+            <Gridgallery key={categoria} categoria={categoria}/>
+          } 
+          
           )
         }
         </section>
