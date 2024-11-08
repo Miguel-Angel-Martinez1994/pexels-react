@@ -1,20 +1,34 @@
-
-import { Formulario } from "./Formulario"
+import { useState } from "react"
+import { Formulario } from "./formulario/Formulario"
 import { Gridgallery } from "./Gridgallery"
 
 export const Galeria = () => {
-  const categorias=["ciudades","animales","oceano"]
+
+  const [categorias,setCategorias]=useState([])
+
+  //const categorias=["ciudades","animales","oceano"]
+
+  const onNewCategory=(newCategory)=>{
+
+    const existe=categorias.find((cat)=> cat==newCategory)
+      if(existe) return
+    setCategorias([
+      newCategory,
+      ...categorias
+    ])
+  }
 
   return (
     <>
-      <Formulario/>
-      <h3>Galeria de Fotos</h3>
+       <Formulario onNewCategory={onNewCategory}/>
+        <h3>Galeria de Fotos</h3>
 
-      <section>{
+        <section>{
           categorias.map((categoria)=>
           <Gridgallery key={categoria} categoria={categoria}/>
-        )
-      }</section>
+          )
+        }
+        </section>
     </>
   )
 }
